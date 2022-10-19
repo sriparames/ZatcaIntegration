@@ -553,7 +553,7 @@ namespace ZatcaIntegration
             //B فى حالة فاتورة ذاتية نكتب 1
             //B فى حالة ان الفاتورة صادرات=1 لايمكن ان تكون الفاتورة ذاتية =1
             //
-            inv.invoiceTypeCode.Name = "0200000";
+            inv.invoiceTypeCode.Name = "0100000";
             inv.DocumentCurrencyCode = "SAR";
             inv.TaxCurrencyCode = "SAR";
             // فى حالة ان اشعار دائن او مدين فقط هانكتب رقم الفاتورة اللى اصدرنا الاشعار ليها
@@ -666,7 +666,7 @@ namespace ZatcaIntegration
                 InvoiceReportingResponse invoicereportingmodel = apireqlogic.CallComplianceInvoiceAPI(tokenresponse.BinarySecurityToken, tokenresponse.Secret, invrequestbody);
                 if (string.IsNullOrEmpty(invoicereportingmodel.ErrorMessage))
                 {
-                    MessageBox.Show(invoicereportingmodel.ReportingStatus); //REPORTED
+                    MessageBox.Show(invoicereportingmodel.ClearanceStatus); //CLEARED
                 }
                 else
                 {
