@@ -43,7 +43,7 @@ namespace ZatcaIntegration
             Result res = new Result();
 
             inv.ID = "1230"; // مثال SME00010
-            inv.IssueDate = "2022-08-17";
+            inv.IssueDate = "2021-01-05";
             inv.IssueTime = "09:32:40";
             //388 فاتورة  
             //383 اشعار مدين
@@ -79,67 +79,67 @@ namespace ZatcaIntegration
            // inv.paymentmeans.payeefinancialaccount.paymentnote = "Payment by credit";//اختيارى
 
             //بيانات البائع 
-           inv.SupplierParty.partyIdentification.ID = "123456";
+           inv.SupplierParty.partyIdentification.ID = "123456"; // رقم السجل التجارى الخاض بالبائع
            inv.SupplierParty.partyIdentification.schemeID = "CRN"; //رقم السجل التجارى
             inv.SupplierParty.postalAddress.StreetName = "manofthematch";// اجبارى
             inv.SupplierParty.postalAddress.AdditionalStreetName = ""; //اختيارى
-            inv.SupplierParty.postalAddress.BuildingNumber = "3724"; // اجبارى
-            inv.SupplierParty.postalAddress.PlotIdentification = "9833";//اختيارى
-            inv.SupplierParty.postalAddress.CityName = "makka";
-            inv.SupplierParty.postalAddress.PostalZone = "15385";
-            inv.SupplierParty.postalAddress.CountrySubentity = "مكة المكرمة";// اختيارى
-            inv.SupplierParty.postalAddress.CitySubdivisionName = "flassk";
+            inv.SupplierParty.postalAddress.BuildingNumber = "3724"; // اجبارى رقم المبنى
+            inv.SupplierParty.postalAddress.PlotIdentification = "9833";//اختيارى رقم القطعة
+            inv.SupplierParty.postalAddress.CityName = "Jeddah"; //اسم المدينة
+            inv.SupplierParty.postalAddress.PostalZone = "15385";//الرقم البريدي
+            inv.SupplierParty.postalAddress.CountrySubentity = "مكة المكرمة";//اسم المحافظة او المدينة مثال (مكة) اختيارى
+            inv.SupplierParty.postalAddress.CitySubdivisionName = "flassk";// اسم المنطقة او الحى 
             inv.SupplierParty.postalAddress.country.IdentificationCode = "SA";
-            inv.SupplierParty.partyLegalEntity.RegistrationName ="الأنظمة المتحدة الأمنية";
-            inv.SupplierParty.partyTaxScheme.CompanyID = "300300868600003";
+            inv.SupplierParty.partyLegalEntity.RegistrationName ="الأنظمة المتحدة الأمنية"; // اسم الشركة المسجل فى الهيئة
+            inv.SupplierParty.partyTaxScheme.CompanyID = "300300868600003";// رقم التسجيل الضريبي
             
             // بيانات المشترى
-            inv.CustomerParty.partyIdentification.ID = "123456";
+            inv.CustomerParty.partyIdentification.ID = "123456";// رقم السجل التجارى الخاض بالمشترى
             inv.CustomerParty.partyIdentification.schemeID = "CRN";//رقم السجل التجارى
-            inv.CustomerParty.postalAddress.StreetName = "Kemarat Street,";
-            inv.CustomerParty.postalAddress.AdditionalStreetName = "";
-            inv.CustomerParty.postalAddress.BuildingNumber = "3724";
-            inv.CustomerParty.postalAddress.PlotIdentification = "9833";
-            inv.CustomerParty.postalAddress.CityName = "Jeddah";
-            inv.CustomerParty.postalAddress.PostalZone = "15385";
-            inv.CustomerParty.postalAddress.CountrySubentity = "Makkah";
-            inv.CustomerParty.postalAddress.CitySubdivisionName = "Alfalah";
+            inv.CustomerParty.postalAddress.StreetName = "Kemarat Street,";// اجبارى
+            inv.CustomerParty.postalAddress.AdditionalStreetName = "";//اختيارى
+            inv.CustomerParty.postalAddress.BuildingNumber = "3724";// اجبارى رقم المبنى
+            inv.SupplierParty.postalAddress.PlotIdentification = "9833";//اختيارى رقم القطعة
+            inv.CustomerParty.postalAddress.CityName = "Jeddah"; //اسم المدينة
+            inv.CustomerParty.postalAddress.PostalZone = "15385";//الرقم البريدي
+            inv.CustomerParty.postalAddress.CountrySubentity = "Makkah";//اسم المحافظة او المدينة مثال (مكة) اختيارى
+            inv.CustomerParty.postalAddress.CitySubdivisionName = "Alfalah";// اسم المنطقة او الحى 
             inv.CustomerParty.postalAddress.country.IdentificationCode = "SA";
-            inv.CustomerParty.partyLegalEntity.RegistrationName = "First Shop";
-            inv.CustomerParty.partyTaxScheme.CompanyID = "301121971100003";
+            inv.CustomerParty.partyLegalEntity.RegistrationName = "First Shop";// اسم الشركة المسجل فى الهيئة
+            inv.CustomerParty.partyTaxScheme.CompanyID = "301121971100003";// رقم التسجيل الضريبي
 
 
 
             AllowanceCharge allowancecharge = new AllowanceCharge();
 
             allowancecharge.Amount = 2;
-            allowancecharge.AllowanceChargeReason = "discount"; //reason
-            allowancecharge.taxCategory.ID = "S";
-            allowancecharge.taxCategory.Percent = 15;
+            allowancecharge.AllowanceChargeReason = "discount"; //سبب الخصم
+            allowancecharge.taxCategory.ID = "S";// كود الضريبة
+            allowancecharge.taxCategory.Percent = 15;// نسبة الضريبة
             inv.allowanceCharges.Add(allowancecharge);
 
-            // inv.legalMonetaryTotal.PrepaidAmount = 10;
+            // فى حالة فى اكتر من منتج فى الفاتورة هانعمل ليست من invoiceline مثال الكود التالى
             for (int i = 0; i < 3; i++)
             {
                 InvoiceLine invline = new InvoiceLine();
                 invline.InvoiceQuantity = 44;
 
 
-                invline.item.Name = "Computer"+i.ToString();
+                invline.item.Name = "Computer";
                
-                    invline.item.classifiedTaxCategory.ID = "S";
-                    invline.item.classifiedTaxCategory.Percent = 15;
-               
-                  
+                    invline.item.classifiedTaxCategory.ID = "S";// كود الضريبة
+                invline.item.classifiedTaxCategory.Percent = 15;// نسبة الضريبة
 
-                invline.price.PriceAmount = 25+i;
-                invline.price.allowanceCharge.AllowanceChargeReason = "discount"; //reason
-                invline.price.allowanceCharge.Amount = 2;
+
+
+                invline.price.PriceAmount = 25;
+                invline.price.allowanceCharge.AllowanceChargeReason = "discount"; //سبب الخصم على مستوى المنتج
+                invline.price.allowanceCharge.Amount = 2;//قيم الخصم
                 TaxSubtotal taxsub = new TaxSubtotal();
 
                
-                    taxsub.taxCategory.ID = "S";
-                    taxsub.taxCategory.Percent = 15;
+                    taxsub.taxCategory.ID = "S";//كود الضريبة
+                    taxsub.taxCategory.Percent = 15;//نسبة الضريبة
                    
                     invline.taxTotal.TaxSubtotal.Add(taxsub);
                
@@ -150,8 +150,9 @@ namespace ZatcaIntegration
 
 
             res = ubl.GenerateInvoiceXML(inv);
-            if (res.IsValid)
+           if (res.IsValid)
             {
+                //القيم التالية تحتاج ان تحفظها فى سطر الفاتورة فى قاعدة البيانات الخاصة بكم  كي تكون مرجع لكم لاحقاً
                 //MessageBox.Show(res.InvoiceHash);
                 //MessageBox.Show(res.SingedXML);
                 //MessageBox.Show(res.EncodedInvoice);
